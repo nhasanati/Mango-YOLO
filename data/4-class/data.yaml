@@ -1,0 +1,9 @@
+path: D:\datasets\mangoes YOLO with Images 50-split
+train: images/train
+val: images/test
+
+names:
+  - Class 1
+  - Class 2
+  - Extra Class
+  - Reject

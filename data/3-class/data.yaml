@@ -1,0 +1,8 @@
+path: D:\datasets\mangoes-3class
+train: images/train
+val: images/test
+
+names:
+  - Class 1
+  - Class 2
+  - Extra Class
