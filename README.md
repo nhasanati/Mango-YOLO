@@ -95,9 +95,22 @@ results = model("path/to/mango.jpg")
 results[0].show()
 ```
 
+### Streamlit demo app
+
+`main.py` is an interactive Streamlit app for uploading an image and running mango
+detection with adjustable confidence / IoU / image-size thresholds:
+
+```bash
+pip install ultralytics streamlit opencv-python
+streamlit run main.py
+```
+
+The app loads `models/train2/best.pt` (the 4-class proposed model) by default.
+
 ## Repository structure
 
 ```
+main.py                 # Streamlit detection demo app
 models/train2/best.pt   # 4-class proposed model (recommended)
 models/train1/best.pt   # 3-class baseline
 models/train0/best.pt   # 4-class, AMP enabled (ablation)
