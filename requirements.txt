@@ -1,0 +1,5 @@
+# Tested with the versions below; newer patch releases should also work.
+ultralytics>=8.4.75
+streamlit>=1.58.0
+opencv-python>=4.13.0
+numpy>=2.0

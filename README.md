@@ -100,14 +100,24 @@ results[0].show()
 ### Streamlit demo app
 
 `main.py` is an interactive Streamlit app for uploading an image and running mango
-detection with adjustable confidence / IoU / image-size thresholds:
+detection with adjustable confidence / IoU / image-size thresholds. The model weights
+are already included in the repository, so after cloning you only need to install the
+dependencies:
 
 ```bash
-pip install ultralytics streamlit opencv-python
+# 1. Clone the repository
+git clone https://github.com/nhasanati/Mango-YOLO.git
+cd Mango-YOLO
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Run the app (must be run from the repo root)
 streamlit run main.py
 ```
 
-The app loads `models/train2/best.pt` (the 4-class proposed model) by default.
+The app then opens in your browser at http://localhost:8501 and loads
+`models/train2/best.pt` (the 4-class proposed model) by default.
 
 ## Repository structure
 
