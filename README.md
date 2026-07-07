@@ -51,6 +51,20 @@ Adding the rare **Reject** class keeps overall detection quality essentially unc
 | Precision | 0.8444 | 0.9024 | 0.8088 | 1.0000 | 0.8889 |
 | Recall | 0.9500 | 0.8721 | 0.8651 | 0.8102 | 0.8744 |
 
+### Ablation — Automatic Mixed Precision (AMP)
+
+`train0` and `train2` use the identical 4-class setup; the only difference is AMP. The metrics below are each run's **own validation at the final epoch (100)** — not the 70:30 test set used in the tables above — so compare them only against each other.
+
+| Metric | `train0` (AMP on) | `train2` (AMP off) |
+|---|---|---|
+| mAP@0.5 | 0.7732 | **0.9309** |
+| mAP@0.5:0.95 | 0.7390 | **0.8590** |
+| Precision | 0.8487 | 0.8370 |
+| Recall | 0.7333 | **0.8803** |
+| Validation loss | **NaN** (unstable) | normal |
+
+AMP produced NaN validation loss and unstable training on this dataset; disabling it stabilized training and raised mAP@0.5 by ~0.16. This is why the released model (`train2`) is trained with AMP disabled.
+
 ## Training configuration
 
 | Parameter | Value |
