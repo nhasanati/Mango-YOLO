@@ -12,9 +12,9 @@ Three YOLOv11n runs are provided under `models/`:
 
 | Folder | Classes | AMP | Role |
 |---|---|---|---|
-| [`models/train2`](models/train2/best.pt) | 4 (Super, Class I, Class II, **Reject**) | disabled | **Proposed model (Model B)** — released `best.pt` |
-| [`models/train1`](models/train1/best.pt) | 3 (Super, Class I, Class II) | disabled | Baseline (Model A) |
-| [`models/train0`](models/train0/best.pt) | 4 (with Reject) | enabled | AMP-enabled ablation (kept for reproducibility) |
+| [`models/train2`](models/train2/best.pt) | 4 (Super/Extra Class, Class I, Class II, **Reject**) | disabled | **Proposed model (Model B)** — released `best.pt` |
+| [`models/train1`](models/train1/best.pt) | 3 (Super/Extra Class, Class I, Class II) | disabled | Baseline (Model A) |
+| [`models/train0`](models/train0/best.pt) | 4 (Super/Extra Class, Class I, Class II, Reject) | enabled | AMP-enabled ablation (kept for reproducibility) |
 
 **Released / recommended weights:** [`models/train2/best.pt`](models/train2/best.pt) — the 4-class proposed model. Each checkpoint is 5.3 MB.
 
