@@ -4,7 +4,7 @@
 
 Nidaul Hasanati, Taufik Djatna, Imas Sukaesih Sitanggang, Arif Imam Suroso — IPB University.
 
-This repository accompanies Paper 2 (JOIV). It studies how adding a rare "Reject" quality class affects a YOLOv11n mango grading detector, comparing a 3-class baseline against a 4-class proposed model.
+This repository accompanies the paper titled above. It studies how adding a rare **Reject** quality class affects a YOLOv11n mango grading detector, comparing a 3-class baseline against a 4-class proposed model.
 
 ## Models
 
