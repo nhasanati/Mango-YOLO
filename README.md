@@ -6,6 +6,8 @@ Nidaul Hasanati, Taufik Djatna, Imas Sukaesih Sitanggang, Arif Imam Suroso — I
 
 This repository accompanies the paper titled above. It studies how adding a rare **Reject** quality class affects a YOLOv11n mango grading detector, comparing a 3-class baseline against a 4-class proposed model.
 
+A ready-to-run Streamlit demo ([`main.py`](main.py)) is included for interactive detection on your own images — see [Streamlit demo app](#streamlit-demo-app).
+
 ## Models
 
 Three YOLOv11n runs are provided under `models/`:
