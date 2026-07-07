@@ -119,6 +119,8 @@ streamlit run main.py
 The app then opens in your browser at http://localhost:8501 and loads
 `models/train2/best.pt` (the 4-class proposed model) by default.
 
+> **Note:** PyTorch is installed automatically as an `ultralytics` dependency (CPU build). For GPU acceleration, install the matching CUDA build of `torch` first — see [pytorch.org](https://pytorch.org).
+
 ## Repository structure
 
 ```
