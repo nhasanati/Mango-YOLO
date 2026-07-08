@@ -4,7 +4,7 @@
 
 Nidaul Hasanati, Taufik Djatna, Imas Sukaesih Sitanggang, Arif Imam Suroso — IPB University.
 
-This repository accompanies the paper titled above. It studies how adding a rare **Reject** quality class affects a YOLOv11n mango grading detector, comparing a 3-class baseline against a 4-class proposed model.
+This repository accompanies the paper titled above. It studies how adding a rare **Reject** quality class affects a YOLOv11n mango grading detector, comparing a 3-class baseline (Super/Extra Class, Class I, Class II) against a 4-class proposed model (Super/Extra Class, Class I, Class II, **Reject**).
 
 A ready-to-run Streamlit demo ([`main.py`](main.py)) is included for interactive detection on your own images — see [Streamlit demo app](#streamlit-demo-app).
 
@@ -14,9 +14,9 @@ Three YOLOv11n runs are provided under `models/`:
 
 | Folder | Classes | AMP | Role |
 |---|---|---|---|
-| [`models/train2`](models/train2/best.pt) | 4 (Super/Extra Class, Class I, Class II, **Reject**) | disabled | **Proposed model (Model B)** — released `best.pt` |
-| [`models/train1`](models/train1/best.pt) | 3 (Super/Extra Class, Class I, Class II) | disabled | Baseline (Model A) |
-| [`models/train0`](models/train0/best.pt) | 4 (Super/Extra Class, Class I, Class II, Reject) | enabled | AMP-enabled ablation (kept for reproducibility) |
+| [`models/train2`](models/train2/best.pt) | 4 (Extra Class, Class I, Class II, **Reject**) | disabled | **Proposed model (Model B)** — released `best.pt` |
+| [`models/train1`](models/train1/best.pt) | 3 (Extra Class, Class I, Class II) | disabled | Baseline (Model A) |
+| [`models/train0`](models/train0/best.pt) | 4 (Extra Class, Class I, Class II, Reject) | enabled | AMP-enabled ablation (kept for reproducibility) |
 
 **Released / recommended weights:** [`models/train2/best.pt`](models/train2/best.pt) — the 4-class proposed model. Each checkpoint is 5.3 MB.
 
