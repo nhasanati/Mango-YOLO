@@ -50,7 +50,7 @@ Adding the rare **Reject** class keeps overall detection quality essentially unc
 |---|---|---|---|---|---|
 | mAP@0.5 | 0.9624 | 0.9517 | 0.9333 | 0.9757 | 0.9558 |
 | mAP@0.5:0.95 | 0.9538 | 0.8672 | 0.9228 | 0.7916 | 0.8838 |
-| Precision | 0.8444 | 0.9024 | 0.8088 | 1.0000 | 0.8889 |
+| Precision | 0.8444 | 0.9024 | 0.8088 | **1.0000** | 0.8889 |
 | Recall | 0.9500 | 0.8721 | 0.8651 | 0.8102 | 0.8744 |
 
 ### Ablation — Automatic Mixed Precision (AMP)
