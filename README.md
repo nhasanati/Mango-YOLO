@@ -2,7 +2,7 @@
 
 **Evaluating Rare-Class Modeling in YOLOv11n for Imbalanced Agricultural Object Detection: A Mango Case Study**
 
-Nidaul Hasanati, Taufik Djatna, Imas Sukaesih Sitanggang, Arif Imam Suroso — IPB University.
+Nidaul Hasanati, Taufik Djatna, Imas Sukaesih Sitanggang, Arif Imam Suroso — IPB University, UIN Syarif Hidayatullah
 
 This repository accompanies the paper titled above. It studies how adding a rare **Reject** quality class affects a YOLOv11n mango grading detector, comparing a 3-class baseline (Super/Extra Class, Class I, Class II) against a 4-class proposed model (Super/Extra Class, Class I, Class II, **Reject**).
 
