@@ -1,4 +1,3 @@
-path: D:\datasets\mangoes-3class
 train: images/train
 val: images/test
 

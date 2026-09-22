@@ -1,4 +1,3 @@
-path: D:\datasets\mangoes YOLO with Images 50-split
 train: images/train
 val: images/test
 

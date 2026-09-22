@@ -20,6 +20,30 @@ Three YOLOv11n runs are provided under `models/`:
 
 **Released / recommended weights:** [`models/train2/best.pt`](models/train2/best.pt) — the 4-class proposed model. Each checkpoint is 5.3 MB.
 
+## Dataset
+
+Both datasets are released under `data/` in YOLO format (one `.txt` label file per image), one folder per configuration. Class indices follow the order in each `data.yaml` (`Class 1`, `Class 2`, `Extra Class`, `Reject`).
+
+| | 3-class baseline (`data/3-class`) | 4-class proposed (`data/4-class`) |
+|---|---|---|
+| Total images / annotations | 448 / 695 | 468 / 745 |
+| `images/train` | 312 / 525 | 327 / 555 |
+| `images/test` — 30% evaluation partition | 136 / 170 | 141 / 190 |
+
+- **Split.** A single 70:30 partition is used in both configurations, exactly as in the paper. The 3-class dataset is derived from the 4-class one by removing the 20 images that contain Reject fruit (15 from train, 5 from the evaluation partition), so `3-class/images/test` is a subset of `4-class/images/test`.
+- **What `val:` means.** Each `data.yaml` points `val:` at `images/test`, which is the configuration actually used for training: the best checkpoint (`best.pt`) was selected on this 30% partition, and the single-split numbers below are measured on the same partition. The comparison between the two models is fair because the protocol is identical for both, and the 5-fold cross-validation is the primary evidence for the conclusions.
+- **Duplicate check.** MD5 hashes of all 468 images were compared across partitions. One evaluation image (`4-class/images/test/376c8fb7-reject_10.jpg`) is byte-identical to a training image (`4-class/images/train/5827c6a2-reject_5.jpg`). It is kept so the released data matches what was trained on; excluding it changes mAP@0.5 of the 4-class model by less than 0.001. The 3-class dataset contains no duplicates.
+- **Relation to MangoVQA.** The follow-up Visual Question Answering work ([MangoVQA](https://github.com/nhasanati/MangoVQA)) further divides this 141-image evaluation partition into 70 validation and 71 test images. That finer split belongs to the VQA project and is documented there; the detection results in this repository use the full 141-image partition.
+
+To reproduce the single-split numbers from the released weights (run from the repository root):
+
+```bash
+yolo val model=models/train2/best.pt data=data/4-class/data.yaml imgsz=480   # 4-class proposed
+yolo val model=models/train1/best.pt data=data/3-class/data.yaml imgsz=480   # 3-class baseline
+```
+
+Small differences (≈0.003–0.004 in mAP@0.5) can arise from the Ultralytics version.
+
 ## Results
 
 Two evaluation protocols are reported. The single-split numbers describe the released `best.pt` checkpoint; the 5-fold cross-validation numbers describe the robustness of the method.
@@ -129,5 +153,6 @@ models/train2/best.pt   # 4-class proposed model (recommended)
 models/train1/best.pt   # 3-class baseline
 models/train0/best.pt   # 4-class, AMP enabled (ablation)
 vqa/                     # Visual Question Answering (multi-answer grading)
-data/                    # Datasets
+data/3-class/            # 3-class baseline dataset (train 312 / test 136)
+data/4-class/            # 4-class proposed dataset (train 327 / test 141)
 ```
