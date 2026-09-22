@@ -60,7 +60,15 @@ All images were annotated with bounding boxes in YOLO format by **two annotators
 
 - **Split.** A single 70:30 partition is used in both configurations, exactly as in the paper. The 3-class dataset is derived from the 4-class one by removing the 20 images that contain Reject fruit (15 from train, 5 from the evaluation partition), so `3-class/images/test` is a subset of `4-class/images/test`.
 - **What `val:` means.** Each `data.yaml` points `val:` at `images/test`, which is the configuration actually used for training: the best checkpoint (`best.pt`) was selected on this 30% partition, and the single-split numbers below are measured on the same partition. The comparison between the two models is fair because the protocol is identical for both, and the 5-fold cross-validation is the primary evidence for the conclusions.
-- **Duplicate check.** MD5 hashes of all 468 images were compared across partitions. One evaluation image (`4-class/images/test/376c8fb7-reject_10.jpg`) is byte-identical to a training image (`4-class/images/train/5827c6a2-reject_5.jpg`). It is kept so the released data matches what was trained on; excluding it changes mAP@0.5 of the 4-class model by less than 0.001. The 3-class dataset contains no duplicates.
+- **Duplicate check.** MD5 checksums of all 468 images were compared across partitions. One evaluation image, `4-class/images/test/376c8fb7-reject_10.jpg`, is byte-identical to the training image `4-class/images/train/5827c6a2-reject_5.jpg` (the same source image was ingested twice under different identifiers during annotation; both copies were annotated independently, 4 Reject boxes each). It is kept so the released data matches exactly what the models were trained and evaluated on. Its effect on the released 4-class model was measured by evaluating `models/train2/best.pt` on the evaluation partition with and without that image (Ultralytics 8.4.75, `imgsz=480`, default confidence/IoU):
+
+  | Evaluation set | Images | Instances | mAP@0.5 | mAP@0.5:0.95 | Precision | Recall |
+  |---|---|---|---|---|---|---|
+  | full partition | 141 | 190 | 0.9534 | 0.8782 | 0.9154 | 0.8619 |
+  | without the duplicate | 140 | 186 | 0.9531 | 0.8730 | 0.9142 | 0.8488 |
+  | Δ | | | +0.0003 | +0.0052 | +0.0012 | +0.0131 |
+
+  The duplicate therefore does not affect any conclusion. The 3-class dataset contains no duplicates.
 - **Relation to MangoVQA.** The follow-up Visual Question Answering work ([MangoVQA](https://github.com/nhasanati/MangoVQA)) further divides this 141-image evaluation partition into 70 validation and 71 test images. That finer split belongs to the VQA project and is documented there; the detection results in this repository use the full 141-image partition.
 
 To reproduce the single-split numbers from the released weights (run from the repository root):
