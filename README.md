@@ -22,7 +22,35 @@ Three YOLOv11n runs are provided under `models/`:
 
 ## Dataset
 
-Both datasets are released under `data/` in YOLO format (one `.txt` label file per image), one folder per configuration. Class indices follow the order in each `data.yaml` (`Class 1`, `Class 2`, `Extra Class`, `Reject`).
+Both datasets are released under `data/` in YOLO format (one `.txt` label file per image, `class x_center y_center width height` normalised to 0–1), one folder per configuration. Class indices follow the order in each `data.yaml` (`0 Class 1`, `1 Class 2`, `2 Extra Class`, `3 Reject`).
+
+### Image sources
+
+The 468 post-harvest mango images come from two sources:
+
+1. **Mango Varieties Classification and Grading** (Kaggle, S. Shahane, 2021) — single-mango images captured under controlled studio conditions, originally labelled with three standardized quality classes (Extra Class, Class I, Class II). https://www.kaggle.com/datasets/saurabhshahane/mango-varieties-classification
+2. **Additional real-world images** collected from publicly available online sources — multi-mango scenes of different varieties and quality levels, including severely defective (Reject) fruit, added to introduce environmental variability and represent practical sorting conditions.
+
+The Kaggle images remain subject to the licence stated on their Kaggle page. The bounding-box annotations in this repository were created for the paper and are released together with the images for research use.
+
+### Classes (SNI 3164:2024)
+
+Labels follow the Indonesian national mango standard **SNI 3164:2024**, which grades fruit by the share of the skin surface affected by minor defects (scratches, sunburn, sap stains, abrasions that do not reach the flesh). The proposed configuration adds a fourth, non-commercial class.
+
+| Index | Class | Definition | Annotations (share) |
+|---|---|---|---|
+| 2 | **Extra Class** (Super Class) | highest quality, no significant defects | 187 (25.1%) |
+| 0 | **Class I** | commercially acceptable, minor skin defects ≤ 5% of surface | 349 (46.8%) |
+| 1 | **Class II** | satisfies general requirements, minor skin defects ≤ 10% of surface | 159 (21.3%) |
+| 3 | **Reject** (4-class only) | severe damage, disease symptoms, deformities, or defects reaching the flesh — unsuitable for commercial distribution | 50 (6.7%) |
+
+Reject is deliberately a **rare class**: 50 of 745 annotations (6.7%), 30 of them in the training set. This imbalance is the object of study, not an artefact to be corrected.
+
+### Annotation protocol
+
+All images were annotated with bounding boxes in YOLO format by **two annotators working independently**, following a written guideline derived from SNI 3164:2024, the original Kaggle annotation protocol, and a decision flow (Figure 2 of the paper). Class assignment used the percentage-based defect thresholds above. Borderline cases at the Class II–Reject boundary, where the decision depends on the severity and extent of damage, received particular attention; disagreements were resolved by discussion until consensus was reached.
+
+### Partitions
 
 | | 3-class baseline (`data/3-class`) | 4-class proposed (`data/4-class`) |
 |---|---|---|
